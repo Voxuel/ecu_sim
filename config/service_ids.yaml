@@ -1,41 +1,90 @@
 uds_services:
-  "0x10":
-    service_name: "Diagnostic Session Control"
-    handler: "handle_session_control"
-  "0x11":
-    service_name: "ECU Reset"
+  0x10:
+    name: "Diagnostic Session Control"
+    handler: "handle_diagnostic_session_control"
+    allowed_sessions:
+      - 0x01
+      - 0x03
+      - 0x02
+  0x11:
+    name: "ECU Reset"
     handler: "handle_ecu_reset"
-  "0x14":
-    service_name: "Clear Diagnostic Information"
-    handler: "handle_clear_diagnostic_info"
-  "0x19":
-    service_name: "Read DTC Information"
-    handler: "handle_request_dtc_information"
-  "0x22":
-    service_name: "Read Data By Identifier"
+    allowed_sessions:
+      - 0x01
+      - 0x03
+      - 0x02
+  0x14:
+    name: "Clear Diagnostic Information"
+    handler: "handle_clear_diagnostic_information"
+    allowed_sessions:
+      - 0x03
+      - 0x02
+  0x19:
+    name: "Read DTC Information"
+    handler: "handle_read_dtc_information"
+    allowed_sessions:
+      - 0x01
+      - 0x03
+      - 0x02
+  0x22:
+    name: "Read Data By Identifier"
     handler: "handle_read_data_by_identifier"
-  "0x2E":
-    service_name: "Write Data By Identifier"
+    allowed_sessions:
+      - 0x01
+      - 0x03
+      - 0x02
+  0x23:
+    name: "Read Memory By Address"
+    handler: "handle_read_memory_by_address"
+    allowed_sessions:
+      - 0x03
+      - 0x02
+  0x2E:
+    name: "Write Data By Identifier"
     handler: "handle_write_data_by_identifier"
-  "0x27":
-    service_name: "Security Access"
-    handler: "handle_security_access"
-  "0x28":
-    service_name: "Communication Control"
-    handler: "handle_communication_control"
-  "0x2F":
-    service_name: "Input Output Control By Identifier"
-    handler: "handle_input_output_control_by_identifier"
-  "0x31":
-    service_name: "Routine Control"
+    allowed_sessions:
+      - 0x03
+      - 0x02
+  0x2F:
+    name: "Input Output Control By Identifier"
+    handler: "handle_io_control_by_identifier"
+    allowed_sessions:
+      - 0x03
+  0x31:
+    name: "Routine Control"
     handler: "handle_routine_control"
-  "0x34":
-    service_name: "Request Download"
+    allowed_sessions:
+      - 0x03
+      - 0x02
+  0x34:
+    name: "Request Download"
     handler: "handle_request_download"
-  "0x3E":
-    service_name: "Tester Present"
+    allowed_sessions:
+      - 0x02
+  0x35:
+    name: "Request Upload"
+    handler: "handle_request_upload"
+    allowed_sessions:
+      - 0x02
+  0x36:
+    name: "Transfer Data"
+    handler: "handle_transfer_data"
+    allowed_sessions:
+      - 0x02
+  0x37:
+    name: "Request Transfer Exit"
+    handler: "handle_request_transfer_exit"
+    allowed_sessions:
+      - 0x02
+  0x3E:
+    name: "Tester Present"
     handler: "handle_tester_present"
-  "0x85":
-    service_name: "Control DTC Setting"
+    allowed_sessions:
+      - 0x01
+      - 0x03
+      - 0x02
+  0x85:
+    name: "Control DTC Setting"
     handler: "handle_control_dtc_setting"
-
+    allowed_sessions:
+      - 0x03

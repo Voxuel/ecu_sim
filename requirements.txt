@@ -2,3 +2,4 @@ python-can
 scapy
 asyncio
 ruamel.yaml
+pre-commit

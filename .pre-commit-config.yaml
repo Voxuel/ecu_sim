@@ -1,0 +1,31 @@
+# .pre-commit-config.yaml
+repos:
+  # Basic pre-commit hooks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0  # Latest stable version
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: check-merge-conflict
+
+  # Code quality and formatting with Ruff
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.7.0  # Check for the latest version
+    hooks:
+      - id: ruff
+      - id: ruff-format
+
+  # Import sorting with isort
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1  # Check for the latest version
+    hooks:
+      - id: isort
+
+  # Security checks with Bandit
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.10  # Latest stable version
+    hooks:
+      - id: bandit
+        args: ["--quiet", "--ini", "bandit.yml"]  # Specify Bandit config if needed
