@@ -1,5 +1,3 @@
-Here’s a sample README file for your DoIP project on GitHub. It provides a detailed description, instructions for setting up and running the project, and relevant documentation.
-
 ---
 
 # DoIP Server for ECU Simulation
