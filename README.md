@@ -9,7 +9,7 @@ This project implements a **DoIP (Diagnostics over Internet Protocol)** server, 
 - **UDS Support**: Handles diagnostic requests such as Tester Present, Read Data by Identifier, and Session Control.
 - **Virtual ECU Simulation**: Simulates an ECU that responds to diagnostic messages.
 - **Asynchronous Communication**: Handles multiple connections concurrently for efficient diagnostics testing.
-- **Extensible Architecture**: Easily extendable to support additional UDS services and diagnostic features.
+- **Extensible Architecture**: Easily extendable to support additional UDS services and diagnostic features
 
 ## Table of Contents
 - [Features](#features)
