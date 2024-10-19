@@ -1,7 +1,7 @@
 from typing import List
-from models.uds_models import ECUState
 
 from models.response import DTCInfo
+from models.uds_models import ECUState
 
 
 class ECU:

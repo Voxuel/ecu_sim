@@ -17,12 +17,6 @@ repos:
       - id: ruff
       - id: ruff-format
 
-  # Import sorting with isort
-  - repo: https://github.com/pre-commit/mirrors-isort
-    rev: v5.10.1  # Check for the latest version
-    hooks:
-      - id: isort
-
   # Security checks with Bandit
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.10  # Latest stable version

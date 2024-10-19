@@ -1,18 +1,22 @@
-import can
 import asyncio
 from logging import getLogger
 
+import can
+
 logger = getLogger(__name__)
 
+
 class CANBus:
-    def __init__(self, channel='vcan0', timeout=None):
-        self.bus = can.interface.Bus(channel=channel, interface='socketcan')
+    def __init__(self, channel="vcan0", timeout=None):
+        self.bus = can.interface.Bus(channel=channel, interface="socketcan")
         self.timeout = timeout
 
     async def send_message(self, arbitration_id: int, data: bytearray):
         """Send a CAN message asynchronously."""
         try:
-            message = can.Message(arbitration_id=arbitration_id, data=data, is_extended_id=False)
+            message = can.Message(
+                arbitration_id=arbitration_id, data=data, is_extended_id=False
+            )
             await asyncio.get_event_loop().run_in_executor(None, self.bus.send, message)
             logger.info("Sent CAN message: %s", message)
         except Exception as e:
