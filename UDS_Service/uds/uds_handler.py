@@ -1,5 +1,6 @@
 from UDS_Service.models.ECU import ECU
 
+
 class UDSHandler:
     def __init__(self, config, ecu: ECU):
         self.config = config
@@ -8,14 +9,14 @@ class UDSHandler:
     def handle_request(self, data: bytearray):
         service_id = data[0]
 
-        if service_id == 0x10:  
+        if service_id == 0x10:
             return self.handle_session_control(data)
-        elif service_id == 0x22:  
+        elif service_id == 0x22:
             return self.handle_read_data_by_identifier(data)
-        elif service_id == 0x3E:  
+        elif service_id == 0x3E:
             return self.handle_tester_present(data)
         else:
-            return self.negative_response(service_id, 0x12)  
+            return self.negative_response(service_id, 0x12)
 
     def handle_session_control(self, data: bytearray):
         sub_function = data[1]
@@ -25,9 +26,9 @@ class UDSHandler:
 
     def handle_tester_present(self, data: bytearray):
         if self.ecu.state.session_active:
-            return b"\x02\x7e\x3e"  
+            return b"\x02\x7e\x3e"
         else:
-            return self.negative_response(0x3E, 0x7F)  
+            return self.negative_response(0x3E, 0x7F)
 
     def handle_read_data_by_identifier(self, data: bytearray):
         if len(data) < 4:
@@ -41,7 +42,7 @@ class UDSHandler:
             response_data = bytearray([0x62, 0xF1, 0x86]) + current_session
             return response_data
         else:
-            return self.negative_response(0x22, 0x11)  
+            return self.negative_response(0x22, 0x11)
 
     def negative_response(self, service_id: int, error_code: int):
         return b"\x03\x7f" + bytes([service_id]) + bytes([error_code])

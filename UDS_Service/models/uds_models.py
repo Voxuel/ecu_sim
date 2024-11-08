@@ -12,7 +12,7 @@ NRCs = {
     "IncorrectDataLengthOrRange": 0x23,
     "RequestOutOfRange": 0x31,
     "SecurityAccessDenied": 0x33,
-    "InvalidSession": 0x33
+    "InvalidSession": 0x33,
 }
 
 
@@ -73,7 +73,13 @@ class Service(BaseModel):
 
 
 class ECUState:
-    def __init__(self, identifier_data=None, fault_memory=None, session_active=False, active_session=0x01):
+    def __init__(
+        self,
+        identifier_data=None,
+        fault_memory=None,
+        session_active=False,
+        active_session=0x01,
+    ):
         self.identifier_data = identifier_data if identifier_data else {}
         self.fault_memory = fault_memory if fault_memory else []
         self.session_active = session_active

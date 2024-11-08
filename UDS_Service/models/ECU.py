@@ -21,9 +21,7 @@ class ECU:
     def get_active_session(self):
         """Get the active session's identifier."""
         if self.state.session_active:
-            return bytes(
-                [self.state.active_session]
-            )
+            return bytes([self.state.active_session])
         else:
             return b"\x00"
 
@@ -31,23 +29,21 @@ class ECU:
         """Set a new active session."""
         self.state.session_active = True
         self.state.active_session = session_id
-        self.state.identifier_data[0xF186] = bytes(
-            [session_id]
-        )  
+        self.state.identifier_data[0xF186] = bytes([session_id])
 
     def reset(self, reset_type: int):
         """Reset the ECU."""
-        if reset_type == 0x01:  
+        if reset_type == 0x01:
             self.state.fault_memory.clear()
             self.state.session_active = False
-            self.state.active_session = 0x01  
-        elif reset_type == 0x02:  
-            self.state = ECUState()  
+            self.state.active_session = 0x01
+        elif reset_type == 0x02:
+            self.state = ECUState()
 
     def clear_dtc_information(self, identifier: int = None):
         """Clear DTCs (fault memory)."""
         if identifier is None or identifier == 0xFFFFFFFF:
-            self.state.fault_memory.clear()  
+            self.state.fault_memory.clear()
         else:
             self.state.fault_memory = [
                 dtc for dtc in self.state.fault_memory if dtc.dtc != identifier

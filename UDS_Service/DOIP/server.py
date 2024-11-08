@@ -11,6 +11,7 @@ logger = logging.getLogger(__name__)
 
 config = load_configuration()
 
+
 class DoIPServer:
     def __init__(self, host, port=13400, can_interface="vcan0"):
         self.can_interface = can_interface
@@ -39,12 +40,12 @@ class DoIPServer:
             else:
                 response_bytes = response_data
 
-
             logger.info("Sent CAN message: %s", response_bytes.hex())
             await self.bus.send_message(0x7E0, response_bytes)
 
         except Exception as e:
             logger.error("Error sending CAN message: %s", e)
+
 
 if __name__ == "__main__":
     server = DoIPServer(host="")
