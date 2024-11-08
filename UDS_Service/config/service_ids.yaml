@@ -1,0 +1,197 @@
+uds_services:
+  0x10:
+    name: "Diagnostic Session Control"
+    handler: "handle_diagnostic_session_control"
+    allowed_sessions: [0x01, 0x02, 0x03]
+    length: 1
+    fields:
+      - name: "session_id"
+        type: "int"
+        description: "The session ID for diagnostic control"
+      - name: "request_type"
+        type: "string"
+        description: "Type of the request"
+    memory_range: null
+
+  0x11:
+    name: "ECU Reset"
+    handler: "handle_ecu_reset"
+    allowed_sessions: [0x01, 0x03]
+    length: 1
+    fields:
+      - name: "reset_type"
+        type: "string"
+        description: "Type of reset (soft, hard)"
+    memory_range:
+      - 0x1000
+      - 0x2000
+
+  0x14:
+    name: "Clear Diagnostic Information"
+    handler: "handle_clear_diagnostic_info"
+    allowed_sessions: [0x01, 0x02, 0x03]
+    length: 1
+    fields:
+      - name: "identifier"
+        type: "int"
+        description: "Diagnostic Identifier to clear"
+    memory_range: null
+
+  0x19:
+    name: "Read DTC Information"
+    handler: "handle_read_dtc_info"
+    allowed_sessions: [0x01, 0x02]
+    length: 1
+    fields:
+      - name: "dtc_type"
+        type: "string"
+        description: "Type of DTC to read (e.g., active, stored)"
+    memory_range: null
+
+  0x22:
+    name: "Read Data By Identifier"
+    handler: "handle_read_data_by_identifier"
+    allowed_sessions: [0x01, 0x02]
+    length: 1
+    fields:
+      - name: "identifier"
+        type: "int"
+        description: "Data Identifier to read"
+    memory_range: null
+
+  0x23:
+    name: "Read Memory By Address"
+    handler: "handle_read_memory_by_address"
+    allowed_sessions: [0x01, 0x03]
+    length: 1
+    fields:
+      - name: "address"
+        type: "int"
+        description: "Memory address to read from"
+      - name: "length"
+        type: "int"
+        description: "Number of bytes to read"
+    memory_range:
+      - 0x1000
+      - 0x3000
+
+  0x2E:
+    name: "Write Data By Identifier"
+    handler: "handle_write_data_by_identifier"
+    allowed_sessions: [0x01, 0x03]
+    length: 1
+    fields:
+      - name: "identifier"
+        type: "int"
+        description: "Data Identifier to write"
+      - name: "data"
+        type: "list"
+        description: "Data to write"
+    memory_range: null
+
+  0x2F:
+    name: "Input Output Control By Identifier"
+    handler: "handle_input_output_control_by_identifier"
+    allowed_sessions: [0x01, 0x02]
+    length: 1
+    fields:
+      - name: "identifier"
+        type: "int"
+        description: "Control Identifier"
+      - name: "control"
+        type: "int"
+        description: "Control command"
+    memory_range: null
+
+  0x31:
+    name: "Routine Control"
+    handler: "handle_routine_control"
+    allowed_sessions: [0x01, 0x03]
+    length: 1
+    fields:
+      - name: "routine_id"
+        type: "int"
+        description: "ID of the routine to control"
+      - name: "action"
+        type: "string"
+        description: "Action to perform (start/status/stop)"
+    memory_range: null
+
+  0x34:
+    name: "Request Download"
+    handler: "handle_request_download"
+    allowed_sessions: [0x01, 0x03]
+    length: 1
+    fields:
+      - name: "memory_address"
+        type: "int"
+        description: "Memory address to download to"
+      - name: "data_length"
+        type: "int"
+        description: "Length of the data"
+    memory_range:
+      - 0x1000
+      - 0x5000
+
+  0x35:
+    name: "Request Upload"
+    handler: "handle_request_upload"
+    allowed_sessions: [0x01, 0x02]
+    length: 1
+    fields:
+      - name: "memory_address"
+        type: "int"
+        description: "Memory address to upload from"
+      - name: "data_length"
+        type: "int"
+        description: "Length of the data"
+    memory_range:
+      - 0x2000
+      - 0x4000
+
+  0x36:
+    name: "Transfer Data"
+    handler: "handle_transfer_data"
+    allowed_sessions: [0x01, 0x03]
+    length: 1
+    fields:
+      - name: "data"
+        type: "list"
+        description: "Data to transfer"
+    memory_range: null
+
+  0x37:
+    name: "Request Transfer Exit"
+    handler: "handle_request_transfer_exit"
+    allowed_sessions: [0x01, 0x03]
+    length: 1
+    fields:
+      - name: "exit_code"
+        type: "int"
+        description: "Exit code for the transfer operation"
+    memory_range: null
+
+  0x3E:
+    name: "Tester Present"
+    handler: "handle_tester_present"
+    allowed_sessions: [0x01, 0x02]
+    length: 1
+    fields:
+      - name: "time"
+        type: "int"
+        description: "Time for which the tester is present"
+    memory_range: null
+
+  0x85:
+    name: "Control DTC Setting"
+    handler: "handle_control_dtc_setting"
+    allowed_sessions: [0x01, 0x03]
+    length: 1
+    fields:
+      - name: "setting_type"
+        type: "int"
+        description: "Setting type"
+      - name: "value"
+        type: "int"
+        description: "Setting value"
+    memory_range: null

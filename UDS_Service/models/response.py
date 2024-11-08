@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
-from models.uds_models import DTCInfo
+from UDS_Service.models.uds_models import DTCInfo
 
 
 class UDSServiceResponse(BaseModel):

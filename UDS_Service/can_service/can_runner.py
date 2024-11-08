@@ -1,7 +1,6 @@
+import can
 import asyncio
 from logging import getLogger
-
-import can
 
 logger = getLogger(__name__)
 
@@ -42,7 +41,9 @@ class CANBus:
         logger.info("CAN bus shutdown successfully.")
 
     def __enter__(self):
+        """Context manager for CAN bus."""
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
+        """Ensure proper CAN bus shutdown when exiting context."""
         self.close()

@@ -3,3 +3,5 @@ scapy
 asyncio
 ruamel.yaml
 pre-commit
+pydantic
+python-can

@@ -6,6 +6,7 @@ from pydantic import BaseModel, Field
 class UDSServiceRequest(BaseModel):
     service_id: int = Field(..., description="Service ID")
     data: Optional[List[int]] = Field(default=None, description="Service-specific data")
+    session_id: int = Field(..., description="Session ID for the request")
 
 
 class DiagnosticSessionControlRequest(UDSServiceRequest):
@@ -59,7 +60,7 @@ class InputOutputControlByIdentifierRequest(UDSServiceRequest):
 class RoutineControlRequest(UDSServiceRequest):
     service_id: int = Field(0x31, description="Service ID for Routine Control")
     routine_id: int = Field(..., description="ID of the routine to control")
-    action: int = Field(..., description="Action to perform (start/stop)")
+    action: int = Field(..., description="Action to perform (start/status/stop)")
 
 
 class RequestDownloadRequest(UDSServiceRequest):
