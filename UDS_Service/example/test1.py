@@ -22,7 +22,7 @@ async def send_uds_request():
     current_session_response = await send_request(current_session_request)
     print(f"Current session: {current_session_response.data.hex()}")
 
-    print("\nChanging to Extended Diagnostic Session (0x10 0x02):")
+    print("\nChanging to Prog Diagnostic Session (0x10 0x02):")
     change_session_request = can.Message(
         arbitration_id=0x7E0, data=[0x10, 0x02], is_extended_id=False
     )
